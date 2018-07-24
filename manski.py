@@ -1,6 +1,18 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+'''
+
+# TO DO:
+    * Document Code
+    * Add Function and variable descriptions in function
+    * Unit Test
+    * Error Handling
+
+'''
+
+
+
 
 def manski_bounds(treatment_status, before, after, graph = True):
 
