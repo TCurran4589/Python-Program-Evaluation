@@ -55,14 +55,3 @@ def manski_bounds(treatment_status, before, after, graph = True):
     print("Average Treatment Effect Lower Bound: {}".format(round(ate_lb,4)))
 
     return(treated_bounds, untreated_bounds, ate_ub, ate_lb)
-
-
-df = pd.DataFrame({'treatment_status': np.random.randint(0,2,10),
-                   'before': np.random.randint(0, 11,10),
-                   'after': np.random.randint(0,11,10)
-                    })
-
-manski_bounds(treatment_status = df.treatment_status,
-              before = df.before,
-              after = df.after,
-              graph = True )
