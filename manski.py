@@ -11,9 +11,6 @@ import matplotlib.pyplot as plt
 
 '''
 
-
-
-
 def manski_bounds(treatment_status, before, after, graph = True):
 
     treated = []
@@ -56,8 +53,8 @@ def manski_bounds(treatment_status, before, after, graph = True):
         plt.title(r"Manski Bounds for Treated and Untreated Groups")
         plt.text(.01, treated_bounds[1], ("Treated Upper Bound: "+str(round(treated_bounds[1],2))))
         plt.text(.01, treated_bounds[0], ("Treated Lower Bound: "+str(round(treated_bounds[0],2))))
-        plt.text(.55, untreated_bounds[1], "Treated Upper Bound: "+str(round(untreated_bounds[1],2)))
-        plt.text(.55, untreated_bounds[0], "Treated Lower Bound: "+str(round(untreated_bounds[0],2)))
+        plt.text(.45, untreated_bounds[1], "Untreated Upper Bound: "+str(round(untreated_bounds[1],2)))
+        plt.text(.45, untreated_bounds[0], "Untreated Lower Bound: "+str(round(untreated_bounds[0],2)))
         plt.ylabel("Treatment Effect")
 
     ate_ub = treated_bounds[1] - untreated_bounds[0]
@@ -67,3 +64,14 @@ def manski_bounds(treatment_status, before, after, graph = True):
     print("Average Treatment Effect Lower Bound: {}".format(round(ate_lb,4)))
 
     return(treated_bounds, untreated_bounds, ate_ub, ate_lb)
+
+dataFrame = pd.DataFrame({"treatment_status" : np.random.randint(0,2,100000),
+                          "before" : np.random.normal(50,25,100000),
+                          "after": np.random.normal(50,25,100000)
+                          })
+
+
+manski = manski_bounds(treatment_status = dataFrame.treatment_status,
+                              before = dataFrame.before,
+                              after = dataFrame.after,
+                              graph = True)
